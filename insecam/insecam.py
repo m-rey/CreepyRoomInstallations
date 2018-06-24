@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import socket
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
-import threading
 import random
 
 header = {
@@ -31,14 +30,9 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_header('Content-type','text/html')
         self.end_headers()
         self.wfile.write("<html><head><meta http-equiv=\"refresh\" content=\"30\" /></head>\n".encode('utf-8'))
-        #if link == "":
-        #    link = self.getNextSite()
-        if not current:
-            current = getNewSite(random.randint(1,1000))
         self.wfile.write("<body bgcolor=\"#000000\" background=>\n".encode('utf-8'))
         self.wfile.write("<table style=\"width:100%\" align=\"right\" \n<tr>\n ".encode('utf-8'))
-        #for l in current:
-        threading.Timer(0, self.getNextSite()).start()
+        self.getNextSite()
         tag = '<th> <img src=\"'+ link +'\" width="1300cm" height="750cm"> </th>\n '
         self.wfile.write(tag.encode('utf-8'))
         self.wfile.write("</tr>\n ".encode('utf-8'))

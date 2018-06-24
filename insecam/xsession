@@ -1,0 +1,4 @@
+xset s off -dpms
+~/git/CreepyRoomInstallations/env/bin/python ~/git/CreepyRoomInstallations/insecam/insecam.py &
+chrome --app=http://localhost:8000 --start-fullscreen &
+openbox-session
